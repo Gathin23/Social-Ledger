@@ -7,6 +7,7 @@ import ensIcon from "./images/ens.png";
 import EnsCard from "./component/EnsCard";
 import SocialCard from "./component/SocialCard";
 import UrlCopy from "./component/UrlCopy";
+import Header from "./component/Header";
 
 const GET_QUERY = `
 query tokens($address: Identity!) {
@@ -107,6 +108,8 @@ const DataComponent = ({ confrimedAddress }) => {
 
   if (loading) {
     return (
+      <>
+      <Header/>
       <div className="flex items-center justify-center h-screen">
         <div className="bg-white bg-opacity-60 p-6 rounded-lg shadow-xl text-center backdrop-filter backdrop-blur-lg">
           <p className="text-gray-800 text-2xl mb-4">
@@ -117,6 +120,7 @@ const DataComponent = ({ confrimedAddress }) => {
           </span>
         </div>
       </div>
+      </>
     );
   }
 
@@ -260,6 +264,7 @@ const DataComponent = ({ confrimedAddress }) => {
   // Render your component using the data returned by the query
   return (
     <>
+    <Header/>
       {/* <p>Address: {confrimedAddress}</p>
       <p>XMTP Enabled: {xmtp.enabled ? "True":"False"}</p>
       <p>XMTP: {xmtp.owner}</p>
@@ -277,7 +282,7 @@ const DataComponent = ({ confrimedAddress }) => {
                 <h1 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Integrations</h1>
                 <p className="text-gray-600 mt-2">Extend and automate your workflow by using integrations for your favorite tools.</p>
             </div> */}
-          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-0 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <EnsCard item={ens} />
             <SocialCard item={socials.lens} />
             <SocialCard item={socials.farcaster} />

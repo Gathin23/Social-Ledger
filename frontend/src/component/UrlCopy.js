@@ -32,7 +32,7 @@ const UrlCopy = () => {
           </button>
         </div>
         <div className='mt-2 flex items-center justify-center'>
-        <QRCode value={currentURL} size={100} />
+        <QRCode value={currentURL} size={80} />
         </div>
       </div>
     </div>
