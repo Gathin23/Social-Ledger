@@ -4,7 +4,7 @@ import './index.css';
 import { init } from "@airstack/airstack-react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Page from './page';
-import Component from './component';
+import App from './App';
 
 init(process.env.REACT_APP_AIRSTACK_API_KEY);
 
@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
   <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Component />} />
+        <Route path="/" element={<App />} />
         {/* Dynamic Component */}
         <Route path="sl">
           <Route path=":id" element={<Page />} />

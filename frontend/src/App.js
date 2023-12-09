@@ -1,7 +1,7 @@
 import "./App.css";
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers5/react";
 import ConnectButton from "./component/ConnectButton";
-import InfoCollections from "./component/InfoCollections";
+import Card from "./component/Card";
 
 const projectId = "3c73a77b6b4f6e3b4550743cc4a863ae";
 
@@ -33,7 +33,7 @@ function App() {
   return (
     <div >
       <ConnectButton />
-      <InfoCollections />
+      <Card />
     </div>
   );
 }
