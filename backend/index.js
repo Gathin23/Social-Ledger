@@ -3,6 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
+const { Web3 } = require('web3');
+
+// Initialize Web3
+const web3 = new Web3("https://polygon-mumbai.infura.io/v3/f5dea307b8e141b1959889e8829587f8");
 
 const app = express();
 app.use(cors());
@@ -87,21 +91,8 @@ const getAddress = (id, callback) => {
 
 // verifySignedMessage 
 function verifySignedMessage(message, signature) {
-  const messageBuffer = ethUtil.toBuffer(message);
-  const messageHash = ethUtil.hashPersonalMessage(messageBuffer);
-  const signatureBuffer = ethUtil.toBuffer(signature);
-  const signatureParams = ethUtil.fromRpcSig(signatureBuffer);
 
-  const publicKey = ethUtil.ecrecover(
-    messageHash,
-    signatureParams.v,
-    signatureParams.r,
-    signatureParams.s
-  );
-
-  const addressBuffer = ethUtil.publicToAddress(publicKey);
-  const address = ethUtil.bufferToHex(addressBuffer);
-
+  let address = web3.eth.accounts.recover(message, signature);
   return address;
 }
 
