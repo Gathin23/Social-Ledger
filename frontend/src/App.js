@@ -2,6 +2,7 @@ import "./App.css";
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers5/react";
 import ConnectButton from "./component/ConnectButton";
 import Card from "./component/Card";
+import Section from "./component/Section";
 
 const projectId = "3c73a77b6b4f6e3b4550743cc4a863ae";
 
@@ -34,6 +35,7 @@ function App() {
     <div >
       <ConnectButton />
       <Card />
+      <Section />
     </div>
   );
 }
