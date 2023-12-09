@@ -1,12 +1,12 @@
 import { useQuery } from "@airstack/airstack-react";
 import PropTypes from "prop-types";
-// import Card from "./component/Card";
 import Section from "./component/Section";
 import lens from "./images/lens.png";
 import farcaster from "./images/farcaster.png";
 import ensIcon from "./images/ens.png";
 import EnsCard from "./component/EnsCard";
 import SocialCard from "./component/SocialCard";
+import UrlCopy from "./component/UrlCopy";
 
 const GET_QUERY = `
 query tokens($address: Identity!) {
@@ -106,7 +106,18 @@ const DataComponent = ({ confrimedAddress }) => {
   let dataString;
 
   if (loading) {
-    return <p>Loading Data for {confrimedAddress}...</p>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="bg-white bg-opacity-60 p-6 rounded-lg shadow-xl text-center backdrop-filter backdrop-blur-lg">
+          <p className="text-gray-800 text-2xl mb-4">
+            Loading Data for 
+          </p>
+          <span className="block font-bold text-black text-lg">
+            {confrimedAddress}
+          </span>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
@@ -258,6 +269,7 @@ const DataComponent = ({ confrimedAddress }) => {
       <pre>{JSON.stringify(nft, null, 2)}</pre>
 
       <pre>{dataString}</pre> */}
+      <UrlCopy/>
 
       <section className="py-16">
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -265,7 +277,7 @@ const DataComponent = ({ confrimedAddress }) => {
                 <h1 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Integrations</h1>
                 <p className="text-gray-600 mt-2">Extend and automate your workflow by using integrations for your favorite tools.</p>
             </div> */}
-          <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <EnsCard item={ens} />
             <SocialCard item={socials.lens} />
             <SocialCard item={socials.farcaster} />

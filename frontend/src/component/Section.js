@@ -19,7 +19,7 @@ export default function Section({nft, poap}) {
             <div className="items-start justify-between py-4 border-b md:flex">
                 <div>
                     <h3 className="text-gray-800 text-2xl font-bold">
-                        Other
+                        Collections
                     </h3>
                 </div>
                 <div className="items-center gap-x-3 mt-6 md:mt-0 flex">
