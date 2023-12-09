@@ -50,7 +50,7 @@ export default function ConnectButton() {
   // Function to send data to backend
   const sendToBackend = async (data) => {
     try {
-      const response = await fetch('https://dollie.ngrok.app/addAddress', {
+      const response = await fetch('http://localhost:3000/addAddress', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
