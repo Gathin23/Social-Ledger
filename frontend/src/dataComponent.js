@@ -1,7 +1,7 @@
 import { useQuery } from "@airstack/airstack-react";
 import PropTypes from 'prop-types';
 
-const GET_VITALIK_LENS_FARCASTER_ENS = `
+const GET_QUERY = `
 query tokens($address: Identity!) {
   erc721: TokenBalances(
     input: {filter: {owner: {_in: [$address]}, tokenType: {_in: [ERC721]}}, limit: 10, blockchain: ethereum}
@@ -74,7 +74,7 @@ query tokens($address: Identity!) {
 
 
 const DataComponent = ({confrimedAddress}) => {
-  const { data, loading, error } = useQuery(GET_VITALIK_LENS_FARCASTER_ENS, {"address":confrimedAddress}, { cache: false });
+  const { data, loading, error } = useQuery(GET_QUERY, {"address":confrimedAddress}, { cache: false });
   let dataString;
 
   if (loading) {
