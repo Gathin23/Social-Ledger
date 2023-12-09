@@ -6,7 +6,7 @@ const Page = () => {
   const {id} = useParams();
   useEffect(() => {
     // Fetch data from the localhost:3000/getAddress?id={params.id}
-    fetch(`http://localhost:3000/getAddress?id=${id}`)
+    fetch(`https://dollie.ngrok.app/getAddress?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setConfirmedAddress(data.address);

@@ -144,6 +144,22 @@ app.post('/addAddress', (req, res) => {
   });
 });
 
+// Route to add address without signature
+app.post('/addAddressWithoutSignature', (req, res) => {
+  const address = req.body.address;
+  addAddress(address, (err, id) => {
+    if (err) {
+      res.status(500).send('Error adding address');
+    } else {
+      const response = {
+        id: id,
+        address: address,
+      };
+      res.send(response);
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
