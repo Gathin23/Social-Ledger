@@ -13,10 +13,11 @@ root.render(
   <React.StrictMode>
   <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        {/* <Route path="/" element={<App />} /> */}
+        <Route path="/" element={<p>hello world</p>} />
         {/* Dynamic Component */}
         <Route path="sl">
-          <Route path=":id" element={<Page />} />
+          <Route path=":id" element={<App />} />
         </Route>
       </Routes>
     </BrowserRouter>

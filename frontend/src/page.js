@@ -1,17 +1,15 @@
 import DataComponent from "./dataComponent";
 import {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
 
-const Page = () => {
-  const {id} = useParams();
+const Page = ({slug}) => {
   useEffect(() => {
     // Fetch data from the localhost:3000/getAddress?id={params.id}
-    fetch(`https://dollie.ngrok.app/getAddress?id=${id}`)
+    fetch(`https://dollie.ngrok.app/getAddress?id=${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setConfirmedAddress(data.address);
       });
-  }, [id]);
+  }, []);
   const [confrimedAddress, setConfirmedAddress] = useState("");
 
   if (confrimedAddress == "") {

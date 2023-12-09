@@ -3,6 +3,8 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers5/react";
 import ConnectButton from "./component/ConnectButton";
 import Card from "./component/Card";
 import Section from "./component/Section";
+import { useParams } from "react-router-dom";
+import Page from "./page";
 
 const projectId = "3c73a77b6b4f6e3b4550743cc4a863ae";
 
@@ -31,11 +33,11 @@ createWeb3Modal({
 });
 
 function App() {
+  const {id} = useParams();
   return (
     <div >
       <ConnectButton />
-      <Card />
-      <Section />
+      <Page slug={id}/>
     </div>
   );
 }
