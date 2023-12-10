@@ -12,9 +12,15 @@ airstack.init(process.env.AIRSTACK_API_KEY);
 const main = async () => {
   
 
-  optedInAddresses = await fetch("https://backend.susanoox.in/getOptedInAddresses").then((res) => res.json()).then((data) => {
-    return data;
-  });
+  const optedInAddresses = await fetch("https://backend.susanoox.in/getOptedInAddresses").then((res) => {
+
+
+
+
+
+
+    return res.json();
+  })
 
   if (optedInAddresses.length == 0) {
     console.log("No opted in addresses");
