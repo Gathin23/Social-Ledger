@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 
 const Page = ({slug}) => {
   useEffect(() => {
-    // Fetch data from the localhost:3000/getAddress?id={params.id}
     fetch(`https://backend.susanoox.in/getAddress?id=${slug}`)
       .then((res) => res.json())
       .then((data) => {
