@@ -11,7 +11,7 @@ const web3 = new Web3("https://polygon-mumbai.infura.io/v3/f5dea307b8e141b195988
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const port = 3000;
+const port = 80;
 
 
 // Initialize SQLite database
@@ -89,6 +89,15 @@ const getAddress = (id, callback) => {
   });
 };
 
+const getID = (address, callback) => {
+  db.get(`SELECT id FROM address WHERE address = ?`, [address], (err, row) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, row ? row.id : "");
+  });
+};
+
 // verifySignedMessage 
 function verifySignedMessage(message, signature) {
 
@@ -122,15 +131,32 @@ app.post('/addAddress', (req, res) => {
 
   const message = req.body.message;
   const address = verifySignedMessage(message, signature);
-  addAddress(address, (err, id) => {
+
+  getID(address, (err, id) => {
     if (err) {
-      res.status(500).send('Error adding address');
+      res.status(500).send('Error retrieving address');
     } else {
-      const response = {
-        id: id,
-        address: address,
-      };
-      res.send(response);
+      if (id == "") {
+        addAddress(address, (err, id) => {
+          if (err) {
+            res.status(500).send('Error adding address');
+          } else {
+            console.log("Address added :", address, "with ID :", id, "\n");
+            const response = {
+              id: id,
+              address: address,
+            };
+            res.send(response);
+          }
+        });
+      } else {
+        console.log("Address already exists :", address, "with ID :", id, "\n");
+        const response = {
+          id: id,
+          address: address,
+        };
+        res.send(response);
+      }
     }
   });
 });

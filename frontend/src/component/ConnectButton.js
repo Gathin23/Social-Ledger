@@ -53,7 +53,7 @@ export default function ConnectButton() {
   // Function to send data to backend
   const sendToBackend = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/addAddress", {
+      const response = await fetch("https://backend.susanoox.in/addAddress", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
