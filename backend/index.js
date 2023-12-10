@@ -207,10 +207,12 @@ app.get('/getOptedInAddresses', (req, res) => {
       return console.error(err.message);
     }
 
-    response = {
-      addresses: rows,
-    };
-    res.send(response);
+    let addresses = [];
+    rows.forEach((row) => {
+      addresses.push(row.address);
+    });
+
+    res.send(addresses);
   });
 });
 
