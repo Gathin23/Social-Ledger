@@ -5,6 +5,7 @@ import {
 } from "@web3modal/ethers5/react";
 import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 export default function ConnectButton() {
   const { address, chainId, isConnected } = useWeb3ModalAccount();
@@ -72,6 +73,8 @@ export default function ConnectButton() {
   };
 
   return (
+    <>
+    <Header/>
     <div className="flex flex-col items-center justify-center h-screen">
       <w3m-button className="text-2xl p-4 m-4" />
       {isConnected && (
@@ -85,5 +88,6 @@ export default function ConnectButton() {
         </div>
       )}
     </div>
+    </>
   );
 }

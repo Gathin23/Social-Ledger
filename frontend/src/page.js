@@ -14,7 +14,8 @@ const Page = ({slug}) => {
   if (confrimedAddress == "") {
     return (
         <>
-        Fetching Address...
+        <div className="flex items-center justify-center h-screen">
+          </div>
     </>
     );
   }

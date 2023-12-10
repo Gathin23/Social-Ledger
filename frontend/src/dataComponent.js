@@ -109,17 +109,17 @@ const DataComponent = ({ confrimedAddress }) => {
   if (loading) {
     return (
       <>
-      <Header/>
-      <div className="flex items-center justify-center h-screen">
-        <div className="bg-white bg-opacity-60 p-6 rounded-lg shadow-xl text-center backdrop-filter backdrop-blur-lg">
-          <p className="text-gray-800 text-2xl mb-4">
-            Loading Data for 
-          </p>
-          <span className="block font-bold text-black text-lg">
-            {confrimedAddress}
-          </span>
+        <Header/>
+        <div className="flex items-center justify-center h-screen">
+          <div className="bg-white bg-opacity-60 p-6 rounded-lg shadow-xl text-center backdrop-filter backdrop-blur-lg max-w-sm mx-auto">
+            <p className="text-gray-800 text-2xl mb-4">
+              Loading Data for 
+            </p>
+            <span className="font-bold text-black text-sm lg:text-lg">
+              {confrimedAddress}
+            </span>
+          </div>
         </div>
-      </div>
       </>
     );
   }
