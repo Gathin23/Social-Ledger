@@ -10,6 +10,8 @@ const web3 = new Web3("https://polygon-mumbai.infura.io/v3/f5dea307b8e141b195988
 
 const app = express();
 app.use(cors());
+// frontend url : https://social-ledger.pages.dev/ add this to cors
+app.use(cors({ origin: 'https://social-ledger.pages.dev' }));
 app.use(bodyParser.json());
 const port = 80;
 
