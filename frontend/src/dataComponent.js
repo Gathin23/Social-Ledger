@@ -155,29 +155,30 @@ const DataComponent = ({ confrimedAddress }) => {
     lens: {},
     farcaster: {},
   };
+  socials.lens = {
+    name: "Lens Protocol",
+    icon: lens,
+    profileName: "No Lens",
+    blockchain: "ethereum",
+    userId: "No Lens",
+    followerCount: "No Lens",
+    followingCount: "No Lens",
+    href: "https://hey.xyz/u/",
+  };
+  socials.farcaster = {
+    name: "Farcaster",
+    icon: farcaster,
+    profileName: "No Farcaster",
+    blockchain: "ethereum",
+    userId: "No Farcaster",
+    followerCount: "No Farcaster",
+    followingCount: "No Farcaster",
+    href: "https://farcaster.network/profile/",
+  };
+
   //if the socails are empty, then the user has no socials
-  if (data.socials.Social.length === 0) {
-    socials.lens = {
-      name: "Lens Protocol",
-      icon: lens,
-      profileName: "No Lens",
-      blockchain: "ethereum",
-      userId: "No Lens",
-      followerCount: "No Lens",
-      followingCount: "No Lens",
-      href: "https://hey.xyz/u/",
-    };
-    socials.farcaster = {
-      name: "Farcaster",
-      icon: farcaster,
-      profileName: "No Farcaster",
-      blockchain: "ethereum",
-      userId: "No Farcaster",
-      followerCount: "No Farcaster",
-      followingCount: "No Farcaster",
-      href: "https://farcaster.network/profile/",
-    };
-  } else {
+  console.log(data.socials.Social);
+ if (data.socials.Social != null) {
     for (let i = 0; i < data.socials.Social.length; i++) {
       if (data.socials.Social[i].dappName === "lens") {
         socials.lens = {
@@ -213,7 +214,7 @@ const DataComponent = ({ confrimedAddress }) => {
     poaps: [],
     total: 0,
   };
-
+if (data.poap.Poap != null) {
   poap.total = data.poap.Poap.length;
 
   for (let i = 0; i < data.poap.Poap.length; i++) {
@@ -227,6 +228,7 @@ const DataComponent = ({ confrimedAddress }) => {
       href: "https://poap.gallery/event/" + data.poap.Poap[i].tokenId,
     });
   }
+}
 
   let nft = {
     nfts: [],
@@ -234,6 +236,7 @@ const DataComponent = ({ confrimedAddress }) => {
   };
 
   let NFTs = data.erc721.data;
+if (NFTs != null) {
   nft.total = NFTs.length;
 
   for (let i = 0; i < NFTs.length; i++) {
@@ -251,6 +254,9 @@ const DataComponent = ({ confrimedAddress }) => {
       image: image,
     });
   }
+}
+
+if (data.xmtp.XMTP != null) {
 
   let xmtp = {
     enabled: data.xmtp.XMTP[0].isXMTPEnabled
@@ -260,6 +266,7 @@ const DataComponent = ({ confrimedAddress }) => {
       ? data.xmtp.XMTP[0].primaryDomain.name
       : "No XMTP",
   };
+}
 
   // Render your component using the data returned by the query
   return (
