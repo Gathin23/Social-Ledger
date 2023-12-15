@@ -115,7 +115,7 @@ const DataComponent = ({ confrimedAddress }) => {
             <p className="text-gray-800 text-2xl mb-4">
               Loading Data for 
             </p>
-            <span className="font-bold text-black text-sm lg:text-lg">
+            <span className="font-bold text-black text-sm">
               {confrimedAddress}
             </span>
           </div>
