@@ -1,7 +1,7 @@
 import DataComponent from "./dataComponent";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-const Page = ({slug}) => {
+const Page = ({ slug }) => {
   useEffect(() => {
     fetch(`https://backend.susanoox.in/getAddress?id=${slug}`)
       .then((res) => res.json())
@@ -13,14 +13,11 @@ const Page = ({slug}) => {
 
   if (confrimedAddress == "") {
     return (
-        <>
-        <div className="flex items-center justify-center h-screen">
-          </div>
-    </>
+      <>
+        <div className="flex items-center justify-center h-screen"></div>
+      </>
     );
   }
-
-
 
   // Render your component using the data returned by the query
   return <DataComponent confrimedAddress={confrimedAddress} />;
