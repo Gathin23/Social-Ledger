@@ -6,76 +6,81 @@ import {
 import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import {
+  DynamicContextProvider,
+  DynamicWidget,
+} from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 
 export default function ConnectButton() {
-  const { address, chainId, isConnected } = useWeb3ModalAccount();
-  const { walletProvider } = useWeb3ModalProvider();
-  const [signedMessage, setSignedMessage] = useState("");
-  const [provider, setProvider] = useState(null);
-  const navigate = useNavigate();
+  // const { address, chainId, isConnected } = useWeb3ModalAccount();
+  // const { walletProvider } = useWeb3ModalProvider();
+  // const [signedMessage, setSignedMessage] = useState("");
+  // const [provider, setProvider] = useState(null);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (walletProvider) {
-      setProvider(new ethers.providers.Web3Provider(walletProvider));
-    }
-  }, [walletProvider]);
+  // useEffect(() => {
+  //   if (walletProvider) {
+  //     setProvider(new ethers.providers.Web3Provider(walletProvider));
+  //   }
+  // }, [walletProvider]);
 
-  useEffect(() => {
-    console.log("Provider:", provider);
-  }, [provider]);
+  // useEffect(() => {
+  //   console.log("Provider:", provider);
+  // }, [provider]);
 
-  // Function to handle signing the message
-  const signMessage = async () => {
-    if (!provider) {
-      console.error("Provider not available");
-      return;
-    }
+  // // Function to handle signing the message
+  // const signMessage = async () => {
+  //   if (!provider) {
+  //     console.error("Provider not available");
+  //     return;
+  //   }
 
-    try {
-      // Get the signer from the provider
-      const signer = provider.getSigner();
+  //   try {
+  //     // Get the signer from the provider
+  //     const signer = provider.getSigner();
 
-      // Message to sign
-      const messageToSign = "hi";
+  //     // Message to sign
+  //     const messageToSign = "hi";
 
-      // Sign the message
-      const signature = await signer.signMessage(messageToSign);
-      setSignedMessage(signature);
-      console.log("Signed message:", signature);
+  //     // Sign the message
+  //     const signature = await signer.signMessage(messageToSign);
+  //     setSignedMessage(signature);
+  //     console.log("Signed message:", signature);
 
-      // Send the signature and message to the backend
-      // Replace this with your backend endpoint
-      await sendToBackend({ signature, message: messageToSign });
-    } catch (error) {
-      console.error("Error signing message:", error);
-    }
-  };
+  //     // Send the signature and message to the backend
+  //     // Replace this with your backend endpoint
+  //     await sendToBackend({ signature, message: messageToSign });
+  //   } catch (error) {
+  //     console.error("Error signing message:", error);
+  //   }
+  // };
 
-  // Function to send data to backend
-  const sendToBackend = async (data) => {
-    try {
-      const response = await fetch("https://backend.susanoox.in/addAddress", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+  // // Function to send data to backend
+  // const sendToBackend = async (data) => {
+  //   try {
+  //     const response = await fetch("https://backend.susanoox.in/addAddress", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
 
-      const responseData = await response.json();
-      // console.log('Backend response:', responseData);
-      if (responseData.id !== "") {
-        navigate(`/sl/${responseData.id}`);
-      }
-    } catch (error) {
-      console.error("Error sending data to backend:", error);
-    }
-  };
+  //     const responseData = await response.json();
+  //     // console.log('Backend response:', responseData);
+  //     if (responseData.id !== "") {
+  //       navigate(`/sl/${responseData.id}`);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending data to backend:", error);
+  //   }
+  // };
 
   return (
     <>
-    <Header/>
-    <div className="flex flex-col items-center justify-center h-screen">
+      <Header />
+      {/* <div className="flex flex-col items-center justify-center h-screen">
       <w3m-button className="text-2xl p-4 m-4" />
       {isConnected && (
         <div className="m-5">
@@ -87,7 +92,17 @@ export default function ConnectButton() {
           </button>
         </div>
       )}
-    </div>
+    </div> */}
+      <div className="flex flex-col items-center justify-center h-screen">
+        <DynamicContextProvider
+          settings={{
+            environmentId: "e0b9edb7-9fe3-44ce-829d-053ef5a1b469",
+            walletConnectors: [EthereumWalletConnectors],
+          }}
+        >
+          <DynamicWidget />
+        </DynamicContextProvider>
+      </div>
     </>
   );
 }
